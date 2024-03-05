@@ -2,17 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use Illuminate\Http\Request;
 
-class SiteController extends Controller
+class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(int $id)
+    public function index()
     {
-        dd($id);
-        return view('welcome');
+        $clients = Client::get();
+        // foreach($clients as $client){
+        //     dd($client->nome);
+        // }
+        return view(
+            'clients.index', [
+                'clients' => $clients
+            ]
+        );
     }
 
     /**
@@ -61,6 +69,5 @@ class SiteController extends Controller
     public function destroy(string $id)
     {
         //
-
     }
 }
