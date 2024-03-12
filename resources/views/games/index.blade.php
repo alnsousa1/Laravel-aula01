@@ -16,26 +16,26 @@
     </nav>
 
     <div class="container">
-        <h1>Lista de Clientes</h1>
+        <h1>Lista de Jogos</h1>
 
         <table class="table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nome</th>
-                    <th>Endereço</th>
-                    <th>Observação</th>
+                    <th>Titulo</th>
+                    <th>Gênero</th>
+                    <th>Lançamento</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($clients as $client)
+                @foreach ($games as $game)
                     <tr>
-                        <th>{{$client->id}}</th>
+                        <th>{{$game->id}}</th>
                         <th>
-                            <a href="{{ route('clients.show', $client) }}">{{$client->nome}}</a>
+                            <a href="{{ route('games.show', $game) }}">{{$game->titulo}}</a>
                         </th>
-                        <th>{{$client->endereco}}</th>
-                        <th>{{$client->observacao}}</th>
+                        <th>{{$game->genero}}</th>
+                        <th>{{$game->anoLancamento}}</th>
                     </tr>
                 @endforeach
             </tbody>
