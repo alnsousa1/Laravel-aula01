@@ -17,7 +17,8 @@ class ClientController extends Controller
         //     dd($client->nome);
         // }
         return view(
-            'clients.index', [
+            'clients.index',
+            [
                 'clients' => $clients
             ]
         );
@@ -28,7 +29,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('clients.create');
     }
 
     /**
@@ -36,7 +37,10 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dados = $request->except('_token');
+        Client::create($dados);
+
+        return redirect('/clients');
     }
 
     /**
@@ -47,10 +51,11 @@ class ClientController extends Controller
         $client = Client::find($id);
 
         return view(
-            'clients.show', [
+            'clients.show',
+            [
                 'client' => $client
             ]
-            );
+        );
     }
 
     /**
