@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Games;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class GamesController extends Controller
+class ProductsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $games = Games::get();
+        $products = Product::get();
 
         return view(
-            'games.index',
+            'products.index',
             [
-                'games' => $games
+                'products' => $products
             ]
         );
     }
@@ -27,7 +27,7 @@ class GamesController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -35,7 +35,10 @@ class GamesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dados = $request->except('_token');
+        Product::create($dados);
+
+        return redirect('/products');
     }
 
     /**
@@ -43,11 +46,12 @@ class GamesController extends Controller
      */
     public function show(string $id)
     {
-        $game = Games::find($id);
+        $product = Product::find($id);
 
         return view(
-            'games.show', [
-                'game' => $game
+            'products.show',
+            [
+                'product' => $product
             ]
         );
     }
@@ -57,7 +61,7 @@ class GamesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+    
     }
 
     /**
@@ -65,7 +69,7 @@ class GamesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+      
     }
 
     /**
@@ -73,6 +77,6 @@ class GamesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+     
     }
 }
