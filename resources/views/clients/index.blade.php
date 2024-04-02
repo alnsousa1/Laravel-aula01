@@ -21,6 +21,16 @@
                 </th>
                 <th>{{$client->endereco}}</th>
                 <th>{{$client->observacao}}</th>
+                <th>
+                    <a class="btn btn-primary" href="{{ route('clients.edit', $client) }}">Editar</a>
+                <th>
+                    <form action="{{ route('clients.destroy', $client)}}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button class="btn btn-danger" type="submit" onclick="return confirm('Esta ação não poderá ser desfeita. Tem certeza que deseja excluir?')">Deletar</button>
+                    </form>
+                </th>
+                </th>
             </tr>
         @endforeach
     </tbody>
