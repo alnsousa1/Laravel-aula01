@@ -40,6 +40,7 @@ class ClientController extends Controller
         $dados = $request->except('_token');
         Client::create($dados);
 
+
         return redirect('/clients');
     }
 
@@ -63,7 +64,14 @@ class ClientController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $client = Client::find($id);
+
+        return view(
+            'clients.edit',
+            [
+                'client' => $client
+            ]
+        );
     }
 
     /**
@@ -71,7 +79,17 @@ class ClientController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $client = Client::find($id);
+        $client->update(
+            [
+                'nome' => $request->nome,
+                'endereco' => $request->endereco,
+                'observacao' => $request->observacao
+            ]
+
+        );
+
+        return redirect('/clients');
     }
 
     /**
@@ -79,6 +97,8 @@ class ClientController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $client = Client::find($id);
+        $client->delete();
+        return redirect('/clients');
     }
 }
